@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html.jinja' %}
+{% block content %}
+<header class="absolute p-10 right-28">
+<nav class="flex">
+<div class="text-xl hover:underline font-semibold mr-10 text-white"><a href="{{url_for('auth.logout')}}">Выйти</a></div>
+<div class="text-xl hover:underline font-semibold text-white mr-10"><a href="{{url_for('nomination.index')}}">Вернуться к списку</a></div>
+<div class="text-xl hover:underline font-semibold text-white"><a href="{{url_for('main.main')}}">Главная</a></div>
+</nav>
+</header>
+<div class="min-h-screen bg-gray-900 pt-48">
+    <div class="w-3/4 min-h-[75vh] bg-neutral-100 mx-auto px-32 py-8 text-center">
+        <h1 class="text-3xl block mb-9">Предложить номинацию</h1>
+        <form action="{{ url_for('nomination.store')}}" method="post">
+        {{ form.hidden_tag() }}
+        <div class="flex flex-wrap content-start flex-col text-left font-semibold">{{form.title.label(class='text-xl mb-2')}}
+        {{form.title(class='border-neutral-400 border-b-2 focus:outline-none shadow-none bg-neutral-100 w-3/4 text-xl mb-10')}}</div>
+        <div class="flex flex-wrap content-start flex-col text-left font-semibold">{{form.description.label(class='text-xl mb-2')}}
+        {{form.description(class='border-neutral-400 border-b-2 focus:outline-none shadow-none bg-neutral-100 w-3/4 text-xl mb-10')}}</div>
+        {{form.submit(class='text-2xl bg-gray-500 rounded-md p-2 text-white font-normal cursor-pointer hover:bg-gray-600 transition-all ease-in')}}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

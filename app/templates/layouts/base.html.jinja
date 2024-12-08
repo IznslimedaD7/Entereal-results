@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename = 'image/logo.png') }}">
+    <title>Итоги года Entereal</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/main.css') }}">
+    <script src="{{ url_for('static', filename='src/script.mjs') }}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body class="font-source font-medium">
+    {% include 'layouts/particles/header.html.jinja' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'layouts/particles/footer.html.jinja' %}
+</body>
+
+</html>

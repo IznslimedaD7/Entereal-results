@@ -1,0 +1,57 @@
+{% extends 'layouts/base.html.jinja' %}
+{% block content %}
+    <header class="absolute p-10 right-28">
+<nav class="flex">
+{%if current_user.is_anonymus%}
+<div class="text-xl hover:underline font-semibold mr-10"><a href="{{url_for('auth.registation')}}">Присоединиться</a></div>
+{% else %}
+<div class="text-xl hover:underline font-semibold mr-10"><a href="{{url_for('auth.logout')}}">Выйти</a></div>
+{%endif%}
+<div class="text-xl hover:underline font-semibold"><a href="{{url_for('nomination.index')}}">Голосование</a></div>
+</nav>
+</header>
+    <div class="bg-cyan-100 w-full min-h-screen">
+        <div class="xl:ml-72 xl:flex ml-20" x-data="{show: false}" x-intersect="show = true">
+            <div class="pt-72" x-show="show"
+            x-transition:enter="transition transform duration-500"
+            x-transition:enter-start="-translate-x-full opacity-0">
+                <h1 class=" font-semibold xl:text-[5.5rem] leading-tight md: text-7xl">Итоги года<br>  Entereal <br> 2024</h1>
+                <p class=" font-normal text-3xl opacity-70 mt-4 mb-8 duration-[2500ms]" x-show="show"
+                x-transition.delay.100000ms
+                x-transition:enter-end="opacity-1">От LATAMa до наших дней</p>
+                <div class="text-3xl font-extralight inline hover:underline opacity-40 hover:opacity-75 transition-all ease-in duration-[1000ms]" x-show="show"
+                x-transition.delay.100000ms
+                x-transition:enter-end="opacity-40">
+                <a href="/">Проголосовать</a>
+                </div>
+            </div>
+            <img src="{{ url_for('static', filename='image/djfkdjfkd.jpg') }}" class="2xl:h-[30rem] xl:h-[20rem] h-0 2xl:ml-80 mt-48 drop-shadow-lg xl:ml-52 transition-all duration-1000"
+             x-show="show" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-1">
+        </div>
+    </div>
+    <div class="p-10 mb-20">
+        <div class=" text-3xl font-semibold mr-11 ">Как проходит голосование?</div>
+        <div class="flex" x-data="{show: false}" x-intersect="show = true">
+        <ul class="text-2xl mt-10 ml-12 font-light inline-block transition-all" x-show="show" x-transition.duration.1000ms x-transition:leave="opacity-1">
+            <li>1. Предложение номинации и голосование за лучшие
+                <ul class="ml-4 mb-12 text-xl mt-4"><li>С 9 по 15 декабря предлагай свои номинации,<br> а также голосуй за лучшие.</li></ul>
+            </li>
+            <li>2. Предложение номинантов
+                <ul class="ml-4 mb-12 text-xl mt-4"><li>С 15 по 23 декабря предложи своих номинантов<br> на 12 самых лучишие номинации.</li></ul>
+            </li>
+            <li>3. Голосование за побидителей
+                <ul class="ml-4 mb-12 text-xl mt-4"><li>С 23 по 26 декабря голосуй за тех,<br> кого считаешь достоиным в данной номинации.</li></ul>
+            </li>
+        </ul>
+        <img src="{{ url_for('static', filename='image/Social-media-marketing.svg') }}" class="xl:h-96 inline-block ml-52 h-0" x-show="show" x-transition.duration.1000ms x-transition:leave="opacity-1"></div>
+    </div>
+    <div class="bg-gray-950 h-[50vh] p-20">
+        <div class="lg:text-4xl text-white text-2xl transition-all ease-linear">Присоединяйся к первым итогам года сервера Entereal<br>Возможно именно твой голос решит:<br> кто заберет номицию года!</p></div>
+    {%if current_user.is_anonymus%}
+        <a href="{{url_for('auth.registation')}}">
+    {%else %}
+        <a href="{{url_for('nomination.index')}}">
+    {%endif%}
+        <div class="p-5  text-2xl rounded-3xl inline-block mt-14 ml-2 xl:ml-[80%] text-white hover:bg-white hover:text-gray-950 transition-all ease-linear opacity-70 hover:opacity-100">Присоединиться</div></a>
+    </div>
+{% endblock %}

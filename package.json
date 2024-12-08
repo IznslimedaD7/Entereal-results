@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "watch": "npx tailwindcss -i ./app/static/src/main.css -o ./app/static/dist/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.16"
+  },
+  "dependencies": {
+    "@alpinejs/intersect": "^3.14.7",
+    "alpinejs": "^3.14.7"
+  }
+}

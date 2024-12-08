@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html.jinja' %}
+{% block content %}
+<header class="absolute p-10 right-28">
+<nav class="flex">
+<div class="text-xl hover:underline font-semibold mr-10 text-white"><a href="{{url_for('auth.logout')}}">Выйти</a></div>
+<div class="text-xl hover:underline font-semibold text-white mr-10"><a href="{{url_for('nomination.create')}}">Предложить номинацию</a></div>
+<div class="text-xl hover:underline font-semibold text-white"><a href="{{url_for('main.main')}}">Главная</a></div>
+</nav>
+</header>
+<div class="min-h-screen bg-gray-900 pt-48">
+    <div class="w-3/4 min-h-[75vh] bg-neutral-100 mx-auto px-32 py-8 text-center">
+        <h1 class="text-3xl block mb-4">Номинации</h1>
+        <div class="flex flex-wrap">
+        {% for nom, likes, user in nominations %}
+            <div class="bg-neutral-200 p-5 w-5/12 ml-10 min-h-52 mb-10 block">
+            <ul class="flex flex-col items-start">
+                <li class="font-bold text-2xl mb-4">{{nom.title}}</li>
+                <li class="mb-2">Описание: {%if nom.description==''%} Отсутвует {%else%} {{nom.description}} {% endif %}</li>
+                <li class="mb-2">Автор: {{nom.user.nickname}}</li>
+                <li class="mb-2">Лайков {{likes}}</li>
+                <li>
+                {% if  user == None %}
+                <form action="{{url_for('nomination.add_like', id=nom.id)}}" method="post"><button type="submit"><img src="{{url_for('static', filename='image/like2.svg')}}"></button></form></li>
+                {% else %}
+                <form action="{{url_for('nomination.remove_like', id=nom.id)}}" method="post"> <button type="submit"><img src="{{url_for('static', filename='image/like1.svg')}}"></button></form>
+                {% endif %}</li>
+            </ul>
+            </div>
+        {% endfor %}</div>
+    </div>
+</div>
+
+{% endblock %}
