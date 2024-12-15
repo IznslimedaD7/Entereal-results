@@ -7,6 +7,9 @@ class  NominationRepository():
     def get_all_nominations():
         return Nomination.query.all()
     
+    def nomination_by_id(id):
+        return Nomination.query.filter_by(id=id).first()
+    
     def create_nomination(title, description, user_id):
         nomination = Nomination(title=title, description=description, user_id=user_id)
 
@@ -14,6 +17,7 @@ class  NominationRepository():
             db.session.add(nomination)
             db.session.commit()
         except Exception as e:
+            print(e)
             db.session.rollback()
 
     def add_like(nomination_id, user_id):
@@ -22,6 +26,7 @@ class  NominationRepository():
             db.session.add(like)
             db.session.commit()
         except Exception as e:
+            print(e)
             db.session.rollback()
 
     def remove_like(nomination_id, user_id):
@@ -32,4 +37,15 @@ class  NominationRepository():
             db.session.delete(like)
             db.session.commit()
         except Exception as e:
+            print(e)
+            db.session.rollback()
+
+    def edit(id, title, description):
+        nomination = NominationRepository.nomination_by_id(id)
+        nomination.title = title
+        nomination.description = description
+        try:
+            db.session.commit()
+        except Exception as e:
+            print(e)
             db.session.rollback()

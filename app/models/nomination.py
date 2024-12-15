@@ -10,6 +10,7 @@ class Nomination(db.Model):
     description = db.Column(db.Text, nullable=True)
     user_id  = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
 
+    nominants = db.relationship('Nominat', backref='nomination', lazy=True)
     liked_users = db.relationship('LikeToNomination', back_populates='nomination', lazy=True)
 
     def __repr__(self) -> str:

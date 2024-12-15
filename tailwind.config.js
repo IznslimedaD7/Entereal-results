@@ -6,8 +6,9 @@ module.exports = {
       extend: {
           fontFamily: {
               source: ['"FiraSans"', "sans-serif"],
-            //   bold: ['"Sans Bold"', "sans-serif"]
+              logo: ['"Nunito"', "logo"],
           },
+          
       }
   },
   plugins: [],

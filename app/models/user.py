@@ -12,7 +12,8 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.Text, nullable=False)
     nickname = db.Column(db.String(50), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey(Role.id), nullable=False)
-    
+
+    nominants = db.relationship('Nominat', backref='user', lazy=True)
     nominations = db.relationship('Nomination', backref='user', lazy=True)
     liked_nominations = db.relationship('LikeToNomination', back_populates='user', lazy=True)
 
